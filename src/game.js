@@ -11,13 +11,15 @@
     let input;
     let pokeObj;
 
+    document.getElementById("pokeInput").addEventListener("keypress", function(e) {
+        let key = e.which || e.keyCode || 0;
+        if (key === 13) {
+            search();
+        }
+    });
+
     document.getElementById("search").addEventListener("click", function () {
-        checkInput()
-        let url = "https://pokeapi.co/api/v2/pokemon/" + input;
-        fetchPokemon(url, pokeClass);
-        setTimeout(function () {
-            printPokemon();
-        }, 1000)
+        search();
     })
 
     document.getElementById("previous").addEventListener("click", function (){
@@ -72,6 +74,15 @@
 
             document.getElementById("pokemon").append(div);
         }
+    }
+
+    function search(){
+        checkInput()
+        let url = "https://pokeapi.co/api/v2/pokemon/" + input;
+        fetchPokemon(url, pokeClass);
+        setTimeout(function () {
+            printPokemon();
+        }, 1000)
     }
 
     function fetchPokemon(url, func) {
