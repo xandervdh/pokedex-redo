@@ -22,6 +22,26 @@
         search();
     })
 
+    document.getElementById("nextPokemon").addEventListener("click", function (){
+        document.getElementById("target").innerHTML = "";
+        input++;
+        let url = "https://pokeapi.co/api/v2/pokemon/" + input;
+        fetchPokemon(url, pokeClass);
+        setTimeout(function () {
+            printPokemon();
+        }, 1000)
+    })
+
+    document.getElementById("prevPokemon").addEventListener("click", function (){
+        document.getElementById("target").innerHTML = "";
+        input--;
+        let url = "https://pokeapi.co/api/v2/pokemon/" + input;
+        fetchPokemon(url, pokeClass);
+        setTimeout(function () {
+            printPokemon();
+        }, 1000)
+    })
+
     document.getElementById("previous").addEventListener("click", function (){
         document.getElementById("pokemon").innerHTML = "";
         pokeUrl = [];
@@ -77,6 +97,7 @@
     }
 
     function search(){
+        document.getElementById("target").innerHTML = "";
         checkInput()
         let url = "https://pokeapi.co/api/v2/pokemon/" + input;
         fetchPokemon(url, pokeClass);
@@ -95,8 +116,9 @@
         console.log(data);
         pokeObj = new pokemon(data)
 
+        pokeObj.id = data.id;
         pokeObj.name = data.name;
-        pokeObj.id = makeId(data);
+        pokeObj.idHash = makeId(data);
         pokeObj.sprite = data.sprites.front_default;
     }
 
@@ -124,7 +146,7 @@
         div.append(name);
 
         let id = document.createElement("em");
-        id.innerHTML = pokeObj.id;
+        id.innerHTML = pokeObj.idHash;
         div.append(id);
 
         document.getElementById("target").append(div);
@@ -132,7 +154,6 @@
 
     function checkInput() {
         input = document.getElementById("pokeInput").value;
-        document.getElementById("target").innerHTML = "";
     }
 
 })();

@@ -1,6 +1,7 @@
 class pokemon {
-    name = "";
     id = "";
+    name = "";
+    idHash = "";
     sprite = "";
     constructor(data) {
 
