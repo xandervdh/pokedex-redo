@@ -1,7 +1,15 @@
 class pokemon {
     name = "";
-    country = "";
     id = "";
+    sprite = "";
+    constructor(data) {
+
+    }
+}
+
+class pokPage {
+    name = [];
+    sprite = [];
     constructor(data) {
 
     }
