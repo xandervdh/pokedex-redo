@@ -25,6 +25,11 @@
     document.getElementById("nextPokemon").addEventListener("click", function (){
         document.getElementById("target").innerHTML = "";
         input++;
+        if (input == 1){
+            document.getElementById("prevPokemon").disabled = true;
+        } else {
+            document.getElementById("prevPokemon").disabled = false;
+        }
         let url = "https://pokeapi.co/api/v2/pokemon/" + input;
         fetchPokemon(url, pokeClass);
         setTimeout(function () {
@@ -35,6 +40,11 @@
     document.getElementById("prevPokemon").addEventListener("click", function (){
         document.getElementById("target").innerHTML = "";
         input--;
+        if (input == 1){
+            document.getElementById("prevPokemon").disabled = true;
+        } else {
+            document.getElementById("prevPokemon").disabled = false;
+        }
         let url = "https://pokeapi.co/api/v2/pokemon/" + input;
         fetchPokemon(url, pokeClass);
         setTimeout(function () {
@@ -64,6 +74,18 @@
     function getUrls(data) {
         prevPage = data.previous;
         nextPage = data.next;
+        if (prevPage == null){
+            document.getElementById("previous").disabled = true;
+        } else {
+            document.getElementById("previous").disabled = false;
+        }
+
+        if (nextPage == null){
+            document.getElementById("next").disabled = true;
+        } else {
+            document.getElementById("next").disabled = false;
+        }
+
         for (let i = 0; i < data.results.length; i++) {
             pokeUrl.push(data.results[i].url);
         }
@@ -99,6 +121,8 @@
     function search(){
         document.getElementById("target").innerHTML = "";
         checkInput()
+        document.getElementById("prevPokemon").disabled = false;
+        document.getElementById("nextPokemon").disabled = false;
         let url = "https://pokeapi.co/api/v2/pokemon/" + input;
         fetchPokemon(url, pokeClass);
         setTimeout(function () {
@@ -120,6 +144,7 @@
         pokeObj.name = data.name;
         pokeObj.idHash = makeId(data);
         pokeObj.sprite = data.sprites.front_default;
+        pokeObj.shinySprite = data.sprites.front_shiny;
     }
 
     function makeId(data) {
@@ -154,6 +179,11 @@
 
     function checkInput() {
         input = document.getElementById("pokeInput").value;
+        if (input == 1){
+            document.getElementById("prevPokemon").disabled = true;
+        } else {
+            document.getElementById("prevPokemon").disabled = false;
+        }
     }
 
 })();

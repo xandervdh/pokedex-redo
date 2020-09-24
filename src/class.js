@@ -3,6 +3,7 @@ class pokemon {
     name = "";
     idHash = "";
     sprite = "";
+    shinySprite = "";
     constructor(data) {
 
     }
