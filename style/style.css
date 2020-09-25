@@ -1,14 +1,18 @@
 body {
-  background-image: url("../images/pokeballStylized.svg");
+  background-image: url("../images/pokeballStylizedTurned.svg");
   background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: right -1000px top -900px;
+  background-attachment: fixed;
 }
 
-#wrapper {
-  width: 100%;
+.row {
+  margin: 0;
 }
 
 #input {
-  background-color: rgba(218, 0, 0, 0.5);
+  background-color: #da0000;
+  position: fixed;
   width: 100%;
   z-index: 10;
   padding-left: 20px;
@@ -20,11 +24,12 @@ body {
 
 #page {
   width: 90%;
-  margin: 100px auto;
+  margin: 60px auto;
 }
 
 .showPokemon {
   margin: 10px;
+  cursor: pointer;
 }
 
 .singlePokemon {
