@@ -265,9 +265,72 @@
         return color;
     }
 
+    function getBackgroundColor(type) {
+        let color;
+        switch (type) {
+            case "bug":
+                color = "rgb(168, 184, 32)";
+                break;
+            case "dark":
+                color = "rgb(112, 88, 72)";
+                break;
+            case "dragon":
+                color = "rgb(112, 56, 248)";
+                break;
+            case "electric":
+                color = "rgb(248, 208, 48)";
+                break;
+            case "fairy":
+                color = "rgb(238, 153, 172)";
+                break;
+            case "fighting":
+                color = "rgb(192, 48, 40)";
+                break;
+            case "fire":
+                color = "rgb(240, 128, 48)";
+                break;
+            case "flying":
+                color = "rgb(168, 144, 240)";
+                break;
+            case "ghost":
+                color = "rgb(112, 88, 152)";
+                break;
+            case "grass":
+                color = "rgb(120, 200, 80)";
+                break;
+            case "ground":
+                color = "rgb(224, 192, 104)";
+                break;
+            case "ice":
+                color = "rgb(152, 216, 216)";
+                break;
+            case "normal":
+                color = "rgb(168, 168, 120)";
+                break;
+            case "poison":
+                color = "rgb(160, 64, 160)";
+                break;
+            case "psychic":
+                color = "rgb(248, 88, 136)";
+                break;
+            case "rock":
+                color = "rgb(184, 160, 56)";
+                break;
+            case "steel":
+                color = "rgb(184, 184, 208)";
+                break;
+            case "water":
+                color = "rgb(104, 144, 240)";
+                break;
+        }
+        return color;
+    }
+
     function printPokemon() {
+        document.getElementById("content").style.backgroundColor = getBackgroundColor(pokeObj.typeOne);
+
         let div = document.createElement("div");
-        div.style.backgroundColor = pokeObj.color;
+        div.classList.add("pokemon");
 
         let sprite = document.createElement("img");
         sprite.src = pokeObj.sprite;
