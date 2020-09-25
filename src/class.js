@@ -12,6 +12,7 @@ class pokemon {
 class pokPage {
     name = [];
     sprite = [];
+    id = [];
     constructor(data) {
 
     }

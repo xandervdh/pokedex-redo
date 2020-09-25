@@ -1,5 +1,5 @@
 (() => {
-    let page = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=9";
+    let page = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=12";
     getPage(page);
     let pokeUrl = [];
     let pageClass;
@@ -91,20 +91,32 @@
         }
         console.log(pokeUrl)
         pageClass = new pokPage(data);
-        for (let i = 0; i < pokeUrl.length; i++){
-            fetchPokemon(pokeUrl[i], getPageClass)
-        }
+        fetchPokemonPage();
     }
 
-    function getPageClass(data){
-        pageClass.name.push(data.name);
-        pageClass.sprite.push(data.sprites.front_default);
+    async function fetchPokemonPage() {
+                try {
+            const response = Promise.all(pokeUrl.map((url, i) =>
+                fetch(pokeUrl[i]).then(resp => resp.json())
+            )).then(json=> {
+                for (let i = 0; i < json.length; i++){
+                    pageClass.name.push(json[i].name);
+                    pageClass.sprite.push(json[i].sprites.front_default);
+                    pageClass.id.push(makeId(json[i]));
+                }
+            })
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    const init = () => {
+        fetchPokemonPage();
     }
 
     function printPage(){
         for (let i = 0; i < pageClass.name.length; i++){
             let div = document.createElement("div");
-            div.classList.add("col-4");
+            div.classList.add("col-sm-4", "col-lg-12");
 
             let sprite = document.createElement("img");
             sprite.src = pageClass.sprite[i];
@@ -113,6 +125,10 @@
             let name = document.createElement("strong");
             name.innerHTML = pageClass.name[i];
             div.append(name);
+
+            let id = document.createElement("em");
+            id.innerHTML = pageClass.id[i];
+            div.append(id);
 
             document.getElementById("pokemon").append(div);
         }
@@ -127,6 +143,8 @@
         fetchPokemon(url, pokeClass);
         setTimeout(function () {
             printPokemon();
+            document.getElementById("singlePokemon").style.display = "block";
+            document.getElementById("page").style.marginTop = "10px";
         }, 1000)
     }
 

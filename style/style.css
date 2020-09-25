@@ -1,0 +1,24 @@
+body {
+  width: 95%;
+  margin: auto;
+}
+
+#input {
+  background-color: red;
+  position: fixed;
+  width: 100%;
+}
+
+#singlePokemon {
+  background-color: green;
+  margin-top: 50px;
+  display: none;
+}
+
+#page {
+  background-color: blue;
+  z-index: -50;
+  margin-top: 50px;
+}
+
+/*# sourceMappingURL=style.css.map */
